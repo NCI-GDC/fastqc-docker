@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:15.10
 
 MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 
@@ -10,11 +10,12 @@ RUN apt-get update \
 
 RUN apt-get update && apt-get install -y --force-yes \
     git \
-    openjdk-7-jre-headless \
+    openjdk-8-jre-headless \
     python-pip \
     python-virtualenv \
     python3-dev \
     software-properties-common \
+    sudo \
     time \
     unzip \
     wget
