@@ -9,7 +9,6 @@ RUN apt-get update \
     && apt-get dist-upgrade -y --force-yes
 
 RUN apt-get update && apt-get install -y --force-yes \
-    git \
     openjdk-8-jre-headless \
     python-pip \
     python-virtualenv \
