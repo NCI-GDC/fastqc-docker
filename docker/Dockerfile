@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM quay.io/jeremiahsavage/cdis_base
 
 MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 
@@ -10,19 +10,11 @@ RUN apt-get update \
 
 RUN apt-get update && apt-get install -y --force-yes \
     openjdk-8-jre-headless \
-    python-pip \
-    python-virtualenv \
-    python3-dev \
-    software-properties-common \
-    sudo \
-    time \
     unzip \
     wget
 
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN adduser --disabled-password --gecos '' ubuntu && adduser ubuntu sudo && echo "ubuntu	ALL=(ALL)	NOPASSWD:ALL" >> /etc/sudoers.d/ubuntu
 
 USER ubuntu
 
@@ -32,8 +24,8 @@ RUN mkdir ${HOME}/tools
 
 WORKDIR ${HOME}/tools/
 
-RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.4.zip \
-    && unzip fastqc_v0.11.4.zip \
+RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip \
+    && unzip fastqc_v0.11.5.zip \
     && rm *.zip
 
 WORKDIR ${HOME}
