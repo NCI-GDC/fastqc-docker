@@ -28,6 +28,8 @@ RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5
     && unzip fastqc_v0.11.5.zip \
     && rm *.zip
 
+RUN chmod +x  ${HOME}/tools/FastQC/fastqc
+
 WORKDIR ${HOME}
 
 RUN pip install --user virtualenvwrapper \
