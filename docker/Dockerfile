@@ -9,7 +9,7 @@ RUN apt-get update \
     && apt-get dist-upgrade -y --force-yes
 
 RUN apt-get update && apt-get install -y --force-yes \
-    openjdk-8-jre-headless \
+    openjdk-8-jre \
     unzip \
     wget
 
