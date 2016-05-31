@@ -32,6 +32,8 @@ RUN chmod +x  ${HOME}/tools/FastQC/fastqc
 
 WORKDIR ${HOME}
 
+ENV fastqc_docker 0.1
+
 RUN pip install --user virtualenvwrapper \
     && /bin/bash -c "source ${HOME}/.local/bin/virtualenvwrapper.sh \
     && mkvirtualenv --python=/usr/bin/python3 p3 \
