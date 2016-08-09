@@ -1,12 +1,8 @@
-FROM quay.io/jeremiahsavage/cdis_base
+FROM ubuntu:xenial-20160713
 
 MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 
 USER root
-
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update \
-    && apt-get dist-upgrade -y --force-yes
 
 RUN apt-get update && apt-get install -y --force-yes \
     openjdk-8-jre \
@@ -15,17 +11,15 @@ RUN apt-get update && apt-get install -y --force-yes \
 
 RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-USER ubuntu
-
-ENV HOME /home/ubuntu
-
-RUN mkdir ${HOME}/tools
-
-WORKDIR ${HOME}/tools/
+    
+WORKDIR /usr/local/
 
 RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip \
     && unzip fastqc_v0.11.5.zip \
+<<<<<<< HEAD
+    && rm *.zip \
+    && chmod 755 FastQC/fastqc
+=======
     && rm *.zip
 
 RUN chmod +x  ${HOME}/tools/FastQC/fastqc
@@ -40,3 +34,4 @@ RUN pip install --user virtualenvwrapper \
     && pip install ipython pandas sqlalchemy \
     && echo source ${HOME}/.local/bin/virtualenvwrapper.sh >> ${HOME}/.bashrc \
     && echo source ${HOME}/.virtualenvs/p3/bin/activate >> ${HOME}/.bashrc"
+>>>>>>> 0d0456b439d50f1133ebdfa1ab8d91935f685a0d
