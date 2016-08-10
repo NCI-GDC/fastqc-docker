@@ -15,7 +15,11 @@ RUN apt-get clean \
     
 WORKDIR /usr/local/
 
+RUN rm -rf *
+
 RUN wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip \
     && unzip fastqc_v0.11.5.zip \
     && rm *.zip \
     && chmod 755 FastQC/fastqc
+
+WORKDIR /root
