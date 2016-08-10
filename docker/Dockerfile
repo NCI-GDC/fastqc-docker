@@ -4,8 +4,6 @@ MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 
 USER root
 
-ENV fastqc_docker 0.1
-
 RUN apt-get update && apt-get install -y \
     openjdk-8-jre \
     perl-modules \
