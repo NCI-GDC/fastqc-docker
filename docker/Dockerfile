@@ -6,7 +6,7 @@ USER root
 
 ENV fastqc_docker 0.1
 
-RUN apt-get update && apt-get install -y --force-yes \
+RUN apt-get update && apt-get install -y \
     openjdk-8-jre \
     perl-modules \
     unzip \
