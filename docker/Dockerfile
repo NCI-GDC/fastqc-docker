@@ -11,6 +11,8 @@ RUN echo 'Acquire::http::Proxy "http://cloud-proxy:3128";' >> /etc/apt/apt.conf.
        unzip \
        wget \
     && apt-get clean \
+    && export http_proxy=http://cloud-proxy:3128 \
+    && export https_proxy=http://cloud-proxy:3128 \
     && wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip \
     && unzip fastqc_v0.11.5.zip \
     && rm *.zip \
