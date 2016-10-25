@@ -6,7 +6,7 @@ RUN echo 'Acquire::http::Proxy "http://cloud-proxy:3128";' >> /etc/apt/apt.conf.
     && echo 'Acquire::https::Proxy "http://cloud-proxy:3128";' >> /etc/apt/apt.conf.d/01proxy \
     && apt-get update \
     && apt-get install -y \
-       openjdk-8-jre \
+       openjdk-8-jre-headless \
        perl-modules \
        unzip \
        wget \
