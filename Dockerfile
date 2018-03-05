@@ -9,8 +9,8 @@ RUN apt-get update \
        unzip \
        wget \
     && apt-get clean \
-    && wget http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.5.zip \
-    && unzip fastqc_v0.11.5.zip \
+    && wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.7.zip \
+    && unzip fastqc_v0.11.7.zip \
     && rm *.zip \
     && mv FastQC /usr/local/ \
     && chmod 755 /usr/local/FastQC/fastqc \
