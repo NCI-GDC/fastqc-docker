@@ -14,5 +14,5 @@ RUN apt-get update \
     && rm *.zip \
     && mv FastQC /usr/local/ \
     && chmod 755 /usr/local/FastQC/fastqc \
-    && sed -i 's/assistive_technologies/#assistive_technologies/' /etc/java-8-openjdk/accessibility.properties \
+    && sed -i 's/assistive_technologies/#assistive_technologies/' /etc/java-11-openjdk/accessibility.properties \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
