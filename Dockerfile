@@ -4,6 +4,7 @@ MAINTAINER Jeremiah H. Savage <jeremiahsavage@gmail.com>
 
 RUN apt-get update \
     && apt-get install -y \
+       libfontconfig1 \
        openjdk-11-jre-headless \
        perl-modules \
        unzip \
