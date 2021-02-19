@@ -1,0 +1,34 @@
+FROM quay.io/ncigdc/bio-u20:latest AS builder
+
+MAINTAINER Charles Czysz <czysz@uchicago.edu>
+
+ARG VERSION
+
+# Source ONLY
+# ENV URL=https://github.com/s-andrews/FastQC/archive/v${VERSION}.zip
+
+ENV URL=http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${VERSION}.zip
+
+RUN apt-get update \
+	&& apt-get install -y \
+		build-essential \
+		libfontconfig1 \
+		openjdk-11-jre-headless \
+		perl-modules \
+		wget \
+		unzip \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/*
+
+# Example download and compile step
+RUN cd /opt && wget $URL \
+	&& unzip fastqc_v${VERSION}.zip \
+	&& rm -rf fastqc_v${VERSION}.zip \
+	&& ls \
+	&& cd FastQC \
+	&& chmod +x fastqc \
+	&& ln -s /opt/FastQC/fastqc /usr/local/bin/fastqc \
+	&& sed -i 's/kmer[[:space:]]\+ignore[[:space:]]\+1/kmer ignore 0/' Configuration/limits.txt \
+	&& sed -i 's/assistive_technologies/#assistive_technologies/' /etc/java-11-openjdk/accessibility.properties
+
+ENTRYPOINT ["/usr/local/bin/fastqc"]
