@@ -25,4 +25,3 @@ build_dockers:
     BASE_CONTAINER_REGISTRY: "docker.osdc.io"
   script:
     - /bin/bash build.sh -b "$CI_COMMIT_BRANCH"
-
