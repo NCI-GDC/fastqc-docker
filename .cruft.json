@@ -1,0 +1,16 @@
+{
+    "template": "git@github.com:NCI-GDC/bio-software-template.git",
+    "commit": "0e500765450f52bd1d89b89a65c6519671f56924",
+    "context": {
+      "cookiecutter": {
+        "repository_name": "fastqc-docker",
+        "software_name": "fastqc",
+        "software_version": "0.11.7",
+        "commit": "0e500765450f52bd1d89b89a65c6519671f56924",
+        "_template": "git@github.com:NCI-GDC/bio-software-template.git"
+      }
+    },
+    "directory": null,
+    "checkout": null
+  }
+

@@ -1,23 +1,60 @@
-# bio-software-template
+Further documentation available [here](https://docs.google.com/document/d/17NFwGvn4vMEXZV9Qmg30BqAcKrdxBYCOB4pFdkkwIIo/edit#)
 
-Template repository for building Dockerized versions of external software tools.
+# Using this template
 
-## Using this template
+This template repository should be used as the base for new Dockerized softare repositories.
 
-An example of real-world use of this template can be found at [samtools-docker](https://github.com/NCI-GDC/samtools-docker)
+# Software Dockers of multiple versions
 
-This template is set up to easily publish mutiple tags of a Docker image, where each tag corresponds to the version of the software installed.
+## Pre-requisites
 
-The parameterizable `Dockerfile.multi` makes it simple to use one Dockerfile to install multiple versions from Github, for example.
+- Docker
+- [just](https://github.com/casey/just)
 
-This Dockerfile takes a `VERSION` build argument, set by the Makefile in each subdirectory.
+`just init` will install the correct version of `pre-commit`, be sure to have a python3.8+ virtual environment active.
 
-This VERSION argument is used to build the `URL` variable and reference subsequent files and directories.
+- `just build <VERSION>` will create the Docker for the specified VERSION
 
-Some experimentation might be necessaray to create generic build steps.
+`just build-all` will build all available Docker images.
 
-## Using Bespoke Dockerfiles
+## Just
 
-For some software, a parameterizable Dockerfile is insufficient (samtools version 1.1, for example).
+The `just` utility is a command runner replacement for `make`.
 
-If this the case, add the Dockerfile to the version subdirectory and update the Makefile to point the build command to the correct Dockerfile.
+It has various improvements over `make` including the ability to list available command with `just -l`:
+
+### Root Justfile
+
+```
+Available recipes:
+    build VERSION # Builds individual workflow
+    build-all      # Builds all docker images for each directory with a justfile
+    init
+```
+
+The root `justfile` provides recipes for Dockerizing workflows locally, while workflow-level `justfiles` provide recipes for building the workflow.
+
+### Workflow Justfile
+
+The version-level `justfile` requires the `DOCKERFILE` path be updated.
+
+```
+# justfile
+DOCKERFILE := "../Dockerfile.multi"
+```
+
+Many kinds of software are able to share a single Dockerfile with a parameterized version.
+
+However, if a particular version needs a bespoke Dockerfile, simply create on in the version directory and upate the justfile: 
+
+```
+# justfile
+DOCKERFILE := "./Dockerfile"
+```
+
+```
+Available recipes:
+    emit-dockerfile          # Prints which Dockerfile to use for CI builds
+```
+
+
