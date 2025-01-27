@@ -16,7 +16,3 @@ RUN cd /opt && wget $URL \
 	&& chmod +x fastqc \
 	&& ln -s /opt/FastQC/fastqc /usr/local/bin/fastqc \
 	&& sed -i 's/kmer[[:space:]]\+ignore[[:space:]]\+1/kmer ignore 0/' Configuration/limits.txt
-# For a multi-stage build
-FROM ${REPOSITORY}/ncigdc/amzn2023:${BUILDER_TAG}
-
-COPY --from=builder /usr/local /usr/local
