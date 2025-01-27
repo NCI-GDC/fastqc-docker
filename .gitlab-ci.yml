@@ -12,9 +12,6 @@ include:
 variables:
   DOCKER_VERSION: 27.4.0
 
-stages:
-  - build
-
 build_dockers:
   stage: build
   services:
