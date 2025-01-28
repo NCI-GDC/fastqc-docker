@@ -12,9 +12,6 @@ include:
 variables:
   DOCKER_VERSION: 27.4.0
 
-stages:
-  - build
-
 build_dockers:
   stage: build
   services:
@@ -28,4 +25,3 @@ build_dockers:
     BASE_CONTAINER_REGISTRY: "docker.osdc.io"
   script:
     - /bin/bash build.sh -b "$CI_COMMIT_BRANCH"
-

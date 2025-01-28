@@ -6,6 +6,7 @@ ARG VERSION
 
 ENV URL=http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${VERSION}.zip
 
+RUN dnf install -y java-11-amazon-corretto
 # Example download and compile step
 RUN cd /opt && wget $URL \
 	&& unzip fastqc_v${VERSION}.zip \
@@ -14,9 +15,4 @@ RUN cd /opt && wget $URL \
 	&& cd FastQC \
 	&& chmod +x fastqc \
 	&& ln -s /opt/FastQC/fastqc /usr/local/bin/fastqc \
-	&& sed -i 's/kmer[[:space:]]\+ignore[[:space:]]\+1/kmer ignore 0/' Configuration/limits.txt \
-	&& sed -i 's/assistive_technologies/#assistive_technologies/' /etc/java-11-openjdk/accessibility.properties
-# For a multi-stage build
-FROM ${REPOSITORY}/ncigdc/amzn2023:${BUILDER_TAG}
-
-COPY --from=builder /usr/local/* /usr/local/
+	&& sed -i 's/kmer[[:space:]]\+ignore[[:space:]]\+1/kmer ignore 0/' Configuration/limits.txt
